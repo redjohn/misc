@@ -7,12 +7,19 @@
 
 (require 'color-theme)
 (color-theme-select)
-(color-theme-deep-blue)
+(load "~/.emacs.d/color-theme-tango.el")
+(color-theme-tango)
 
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/clojure-mode")
 (require 'clojure-mode)
+
+(add-to-list 'load-path "~/.emacs.d/haskell-mode")
+(require 'inf-haskell)
+(setq auto-mode-alist (append '(("/*.\.hs$" . haskell-mode)) auto-mode-alist))
 
 (setq make-backup-files nil)
 
 (setq viper-mode t)
 (require 'viper)
+
+(global-set-key [f5] 'clipboard-kill-ring-save)

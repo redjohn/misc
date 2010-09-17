@@ -42,6 +42,7 @@
   (save-buffer)
   (flymake-simple-cleanup)
   (kill-buffer))
+
 (global-set-key [?\C-x ?\C-k] 'vim-exit-shortcut)
 
 (global-set-key [f5] 'clipboard-kill-ring-save)
