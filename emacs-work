@@ -11,13 +11,18 @@
 (require 'git)
 (require 'git-blame)
 
+;use python-mode provided by Python instead of Emacs default
 (autoload 'python-mode "python-mode.el" "Python mode." t)
 
 (set-frame-width (selected-frame) 120)
 (setq auto-save-default nil)
 
+;adds javascript-mode
 (load "~/.emacs.d/js/javascript.el")
 (add-to-list 'auto-mode-alist '("\\.js$" . javascript-mode))
+
+;loads nxhtml, which includes support for multiple major modes
+;and activates django support for html files
 (load "~/.emacs.d/nxhtml/autostart.el")
 (setq mumamo-background-colors nil)
 (add-to-list 'auto-mode-alist '("\\.html$" . django-html-mumamo-mode))
@@ -36,13 +41,9 @@
 
 (add-hook 'python-mode-hook 'flymake-mode)
 
-(defun vim-exit-shortcut ()
-  "Save and Exit"
-  (interactive)
-  (save-buffer)
-  (flymake-simple-cleanup)
-  (kill-buffer))
-
-(global-set-key [?\C-x ?\C-k] 'vim-exit-shortcut)
-
+;give access to Gnome clipboard
 (global-set-key [f5] 'clipboard-kill-ring-save)
+(global-set-key [f6] 'clipboard-yank)
+
+;fixes problem where shell tries to use less (e.g., git log)
+(setenv "PAGER" "/bin/cat")
